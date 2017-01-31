@@ -6,7 +6,7 @@ class Deck
 	def generate
 		temp_array = []
 		cards_number = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
-		cards_suit = ["<3","<>", "clubs", "spades"]
+		cards_suit = ["cl","sp", "<3", "<>"]
 		cards_number.each do |num|
 			cards_suit.each do |suit|
 				temp_array.push("#{num}#{suit}")
@@ -26,6 +26,7 @@ class Deck
 	end
 
 end
+
 
 #new_deck = Deck.new()
 #hand = new_deck.deal(5)
