@@ -2,10 +2,10 @@ require './deck.rb'
 require './card_hand.rb'
 
 class Poker
-	attr_accessor :deck
+	attr_accessor :deck, :hand
 	def initialize(deck, hand)
 		@deck = deck
-		@my_hand = my_hand
+		@hand = hand
 	end
 
 	def main
@@ -17,8 +17,7 @@ class Poker
 		  puts "#{player_1}'s hand is #{my_hand}"
 		end
 		puts "what card do you want to return? if none, type 'none'"
-		return_card = gets.chomp
-		player_cards.exchange(return_card, deck.deal(1))
+		input = gets.chomp
 		#if input = 
 
 	end
@@ -27,11 +26,11 @@ end
 deck = Deck.new()
 computer_cards = Cardhand.new(deck.deal(5), deck)
 player_cards = Cardhand.new(deck.deal(5), deck)
-player_hand = player_cards.hand
-puts player_hand
+poker_game = Poker.new(deck, player_cards.hand)
+puts poker_game.hand
 return_card = gets.chomp
 player_cards.exchange(return_card, deck.deal(1))
-puts player_hand
+puts player_cards.hand
 
 
 #puts "the computer's cards: #{computer_hand}"
