@@ -17,7 +17,8 @@ class Poker
 		  puts "#{player_1}'s hand is #{my_hand}"
 		end
 		puts "what card do you want to return? if none, type 'none'"
-		input = gets.chomp
+		return_card = gets.chomp
+		player_cards.exchange(return_card, deck.deal(1))
 		#if input = 
 
 	end
@@ -31,10 +32,10 @@ puts player_hand
 return_card = gets.chomp
 player_cards.exchange(return_card, deck.deal(1))
 puts player_hand
-puts "my hand: #{player_hand}"
+
 
 #puts "the computer's cards: #{computer_hand}"
-puts "my hand: #{player_hand}"
+
 #puts player_hand.compare(computer_hand)
 #game = Poker.new(deck, hand)
 

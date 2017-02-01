@@ -12,7 +12,7 @@ class Cardhand
 
 	def exchange(takeoutcard, putincard)
 		if @hand.include?(takeoutcard)
-			puts "yes, you have that card"
+			puts "Card received. Dispensing new card. New hand:"
 			 @hand.delete(takeoutcard)
 			 @deck.generate.push(takeoutcard)
 			 @hand.push(putincard)
