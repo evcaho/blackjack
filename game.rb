@@ -9,17 +9,15 @@ class Blackjack
 		@dealer_hand = dealer_hand
 	end
 
-	def total
+	def total(player_cards)
 		player_cards.hand_add(hand)
 	end
 
 	def main(hand, dealer_cards, player_cards)
-		puts "Player 1, what is your name?"
-		player_1 = gets.chomp
 		puts "Ok, let's deal. Type 'deal' when you're ready"
 		input = gets.chomp
 		if input == "deal"
-		  puts "#{player_1}'s hand is #{hand}"
+		  puts "Your hand is #{hand.flatten}"
 		  total = player_cards.hand_add(hand)
 		  puts total
 		end
@@ -27,10 +25,9 @@ class Blackjack
 		input = gets.chomp
         while input == "hit"
 			hand.push(deck.deal(1))
-			total = player_cards.hand_add(hand)
-			puts total
-			puts "#{player_1}'s hand is #{hand}"
-			if total > 21
+			puts player_cards.hand_add(hand)
+			puts "Your hand is #{hand.flatten}"
+			if player_cards.hand_add(hand) > 21
 				puts "Bust! You lose"
 				exit
 			end

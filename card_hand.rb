@@ -15,10 +15,8 @@ class Cardhand
 	end
 
 	def hand_add(hand)
-		puts hand
 		hand_total = 0
 		self.hand.flatten.each do |card|
-			puts card
 			card_value = DECKVALUE[card]
 			hand_total = card_value.to_i + hand_total
 		end
