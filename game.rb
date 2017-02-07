@@ -1,47 +1,61 @@
 require './deck.rb'
 require './card_hand.rb'
 
-class Poker
-	attr_accessor :deck, :hand
-	def initialize(deck, hand)
+class Blackjack
+	attr_accessor :deck, :hand, :dealer_hand
+	def initialize(deck, hand, dealer_hand)
 		@deck = deck
 		@hand = hand
+		@dealer_hand = dealer_hand
 	end
 
-	def main
+	def total
+		player_cards.hand_add(hand)
+	end
+
+	def main(hand, dealer_cards, player_cards)
 		puts "Player 1, what is your name?"
 		player_1 = gets.chomp
 		puts "Ok, let's deal. Type 'deal' when you're ready"
 		input = gets.chomp
 		if input == "deal"
-		  puts "#{player_1}'s hand is #{my_hand}"
+		  puts "#{player_1}'s hand is #{hand}"
+		  total = player_cards.hand_add(hand)
+		  puts total
 		end
-		puts "what card do you want to return? if none, type 'none'"
+		puts "Do you want to stay or hit?"
 		input = gets.chomp
-		#if input = 
+        while input == "hit"
+			hand.push(deck.deal(1))
+			total = player_cards.hand_add(hand)
+			puts total
+			puts "#{player_1}'s hand is #{hand}"
+			if total > 21
+				puts "Bust! You lose"
+				exit
+			end
+			puts "Do you want to stay or hit?"
+			input = gets.chomp
+		end
+		if input == "stay"
+			total = player_cards.hand_add(hand)
+			computer_total = dealer_cards.hand_add(dealer_hand)
+			player_cards.compare(total, computer_total)
+		end
+
+#player_total = card_hand.hand_add(card_hand)
+
 
 	end
 end
 
 deck = Deck.new()
-computer_cards = Cardhand.new(deck.deal(5), deck)
-player_cards = Cardhand.new(deck.deal(5), deck)
-poker_game = Poker.new(deck, player_cards.hand)
-puts poker_game.hand
-return_card = gets.chomp
-player_cards.exchange(return_card, deck.deal(1))
-puts player_cards.hand
+dealer_cards = Cardhand.new(deck.deal(2), deck)
+dealer_hand = dealer_cards.hand
+player_cards = Cardhand.new(deck.deal(2), deck)
+player_hand = player_cards.hand
+blackjack = Blackjack.new(deck, player_hand, dealer_hand)
+puts blackjack.main(player_hand, dealer_cards, player_cards)
 
 
-#puts "the computer's cards: #{computer_hand}"
-
-#puts player_hand.compare(computer_hand)
-#game = Poker.new(deck, hand)
-
-
-
-
-
-#cardhand1 = Cardhand.new(hand1, deck)
-#cardhand2 = Cardhand.new(hand2, deck)
-#puts cardhand1.compare(cardhand2)
+#player_total = card_hand.hand_add(card_hand)

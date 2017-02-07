@@ -28,7 +28,7 @@ class Deck
 end
 
 
-#new_deck = Deck.new()
+
 #hand = new_deck.deal(5)
 
 
